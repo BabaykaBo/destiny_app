@@ -12,28 +12,28 @@ class Destini extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-      home: StoryPage(),
+      home: _StoryPage(),
       title: 'Destini',
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class StoryPage extends StatefulWidget {
-  const StoryPage({super.key});
+class _StoryPage extends StatefulWidget {
+  const _StoryPage();
 
   @override
-  State<StoryPage> createState() => _StoryPageState();
+  State<_StoryPage> createState() => _StoryPageState();
 }
 
-const story = StoryBrain();
+final _story = StoryBrain();
 
-class _StoryPageState extends State<StoryPage> {
+class _StoryPageState extends State<_StoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('images/background.png'),
@@ -43,12 +43,13 @@ class _StoryPageState extends State<StoryPage> {
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
+            
             children: [
               Expanded(
                 flex: 12,
                 child: Center(
                   child: Text(
-                    story.getStory(),
+                    _story.getStory(),
                     style: TextStyle(fontSize: 25.0),
                   ),
                 ),
@@ -57,15 +58,15 @@ class _StoryPageState extends State<StoryPage> {
                 flex: 2,
                 child: ElevatedButton(
                   onPressed: () {
-                    //Choice 1 made by user.
-                    //TODO: Step 18 - Call the nextStory() method from storyBrain and pass the number 1 as the choice made by the user.
+                    setState(() {
+                      _story.nextStory(1);
+                    });
                   },
                   style: ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(Colors.blue),
+                    backgroundColor: WidgetStatePropertyAll(Colors.red),
                   ),
                   child: Text(
-                    //TODO: Step 13 - Use the storyBrain to get the text for choice 1.
-                    'Choice 1',
+                    _story.getFirstChoice(),
                     style: TextStyle(fontSize: 20.0),
                   ),
                 ),
@@ -77,15 +78,15 @@ class _StoryPageState extends State<StoryPage> {
                 //TODO: Step 28 - Set the "visible" property of the Visibility Widget to equal the output from the buttonShouldBeVisible() method in the storyBrain.
                 child: ElevatedButton(
                   onPressed: () {
-                    //Choice 2 made by user.
-                    //TODO: Step 19 - Call the nextStory() method from storyBrain and pass the number 2 as the choice made by the user.
+                    setState(() {
+                      _story.nextStory(2);
+                    });
                   },
                   style: ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(Colors.blue),
                   ),
                   child: Text(
-                    //TODO: Step 14 - Use the storyBrain to get the text for choice 2.
-                    'Choice 2',
+                    _story.getSecondChoice(),
                     style: TextStyle(fontSize: 20.0),
                   ),
                 ),
