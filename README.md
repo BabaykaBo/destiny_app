@@ -1,3 +1,3 @@
-# destiny_app
+# Destini app
 
-A new Flutter project.
+A new study Flutter project. Adventure game like Bandersnatch. 
