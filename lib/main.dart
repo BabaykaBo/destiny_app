@@ -43,7 +43,7 @@ class _StoryPageState extends State<_StoryPage> {
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            
+
             children: [
               Expanded(
                 flex: 12,
@@ -74,20 +74,21 @@ class _StoryPageState extends State<_StoryPage> {
               SizedBox(height: 20.0),
               Expanded(
                 flex: 2,
-                //TODO: Step 26 - Use a Flutter Visibility Widget to wrap this FlatButton.
-                //TODO: Step 28 - Set the "visible" property of the Visibility Widget to equal the output from the buttonShouldBeVisible() method in the storyBrain.
-                child: ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      _story.nextStory(2);
-                    });
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(Colors.blue),
-                  ),
-                  child: Text(
-                    _story.getSecondChoice(),
-                    style: TextStyle(fontSize: 20.0),
+                child: Visibility(
+                  visible: _story.buttonShouldBeVisible(),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        _story.nextStory(2);
+                      });
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(Colors.blue),
+                    ),
+                    child: Text(
+                      _story.getSecondChoice(),
+                      style: TextStyle(fontSize: 20.0),
+                    ),
                   ),
                 ),
               ),

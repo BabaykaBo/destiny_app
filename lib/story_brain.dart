@@ -54,7 +54,7 @@ class StoryBrain {
       _storyNumber = 5;
     } else if (_storyNumber == 2 && input == 2) {
       _storyNumber = 4;
-    } else if (const [3,4,5].contains(_storyNumber)) {
+    } else if (const [3, 4, 5].contains(_storyNumber)) {
       restart();
     }
   }
@@ -73,5 +73,9 @@ class StoryBrain {
 
   void restart() {
     _storyNumber = 0;
+  }
+
+  bool buttonShouldBeVisible() {
+    return const [0, 1, 2].contains(_storyNumber);
   }
 }
