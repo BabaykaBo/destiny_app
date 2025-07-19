@@ -1,3 +1,4 @@
+import 'package:destiny_app/story_brain.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,6 +13,7 @@ class Destini extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark(),
       home: StoryPage(),
+      title: 'Destini',
       debugShowCheckedModeBanner: false,
     );
   }
@@ -24,11 +26,14 @@ class StoryPage extends StatefulWidget {
   State<StoryPage> createState() => _StoryPageState();
 }
 
+const story = StoryBrain();
+
 class _StoryPageState extends State<StoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20),
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('images/background.png'),
@@ -43,8 +48,7 @@ class _StoryPageState extends State<StoryPage> {
                 flex: 12,
                 child: Center(
                   child: Text(
-                    //TODO: Step 10 - use the storyBrain to get the first story title and display it in this Text Widget.
-                    'Story text will go here.',
+                    story.getStory(),
                     style: TextStyle(fontSize: 25.0),
                   ),
                 ),
